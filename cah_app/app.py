@@ -27,7 +27,7 @@ def get_dataset_names():
         clean_name = os.path.basename(f)[3:-4]
         names.append(clean_name)
     if not names:
-        return ["MetFacesSample"]
+        return ["Bowtie"]
     return sorted(list(set(names)))
 
 # --- 3. Data Loading ---
@@ -199,9 +199,9 @@ with charts_container:
                 )
 
         with c_left:
-            st.caption("Input Samples (Fixed View)")
+            st.caption("Input Samples")
             st.altair_chart(left_chart, theme="streamlit", use_container_width=True)
 
         with c_right:
-            st.caption("Centroids (Dynamic View)")
+            st.caption("Centroids")
             st.altair_chart(right_chart, theme="streamlit", use_container_width=True)
