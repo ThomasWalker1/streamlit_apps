@@ -21,7 +21,7 @@ st.markdown("""
 
 # --- HELPER: Find available datasets ---
 def get_dataset_names():
-    files = glob.glob("data/xs-*.npy")
+    files = glob.glob("cah_app/data/xs-*.npy")
     names = []
     for f in files:
         clean_name = os.path.basename(f)[3:-4]
@@ -33,9 +33,9 @@ def get_dataset_names():
 # --- 3. Data Loading ---
 @st.cache_data
 def load_data(dataset_name):
-    xs_file = f"data/xs-{dataset_name}.npy"
-    cs_file = f"data/cs-{dataset_name}.npy"
-    feat_file = f"data/features-{dataset_name}.npy"
+    xs_file = f"cah_app/data/xs-{dataset_name}.npy"
+    cs_file = f"cah_app/data/cs-{dataset_name}.npy"
+    feat_file = f"cah_app/data/features-{dataset_name}.npy"
 
     if os.path.exists(xs_file) and os.path.exists(cs_file):
         xs = np.load(xs_file)
@@ -117,7 +117,7 @@ with c_top_2:
     selected_dataset = st.selectbox("Experiment", available_datasets, label_visibility="collapsed")
 
 # Load Data
-IMAGE_PATH = f"data/output-{selected_dataset}.png"
+IMAGE_PATH = f"cah_app/data/output-{selected_dataset}.png"
 xs, cs, features, bounds = load_data(selected_dataset)
 unique_features = sorted(list(set(features)))
 
