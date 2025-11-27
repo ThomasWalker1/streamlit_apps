@@ -92,6 +92,21 @@ def apply_rotation_and_scale(base_dirs, angle_deg, scale):
 
 st.set_page_config(layout="wide", page_title="Jacobian Alignment")
 st.title("Classifiers with Rank One Jacobians")
+st.markdown("In the paper [What Deep Networks Want to Learn and How to Get There](https://arxiv.org/abs/2506.12284),\
+            we show that optimal classifiers have Jacobians at the training data that are rank one. In particular, \
+            the top singular vector of this rank one Jacobian is aligned with the training data -- a property we call\
+            Jacobian aligned. Jacobian aligned deep networks are optimally robust amongst classifiers with rank one\
+            Jacobians. In this demo we validate this theoretical result.")
+st.markdown("Below is a function mapping a two-dimensional input space to a three-dimensional output space.\
+            A point of the input space is classified according to which output dimension is maximized.\
+            We construct a classifier from three input samples, one from each class.\
+            At each input sample we place a bumpy function such that the classifier correctly classifies that point\
+            and has a Jacobian which is rank one and aligned to some direction. Choosing 'Jacobian Aligned' will set this\
+            direction equal to the input sample. Choosing 'Random' will choose a random direction. In the demo you can rotate\
+            these directions as well as change the magnitude of the corresponding Jacobian, change the locations of the\
+            three input samples, and change the radius of the bump function.")
+st.markdown("The three plots show contour maps of each output dimension, the boundary at which the predicted class of the classifier\
+            changes, and the distance of the input sample to that boundary (this is quantified exactly below the plot).")
 
 # --- State Initialization ---
 if 'points' not in st.session_state:
