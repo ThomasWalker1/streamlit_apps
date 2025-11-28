@@ -7,17 +7,35 @@ import glob
 
 # --- 1. Page Config ---
 st.set_page_config(layout="wide", page_title="Centroid Affinity")
+st.title('The Centroid Affinity Hypothesis')
+st.markdown(
+    """
+In the paper **[The Centroid Affinity Hypothesis](https://openreview.net/forum?id=CLrq72YHgd&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3DNeurIPS.cc%2F2025%2FWorkshop%2FMechInterp%2FAuthors%23your-submissions))**, we provide a complementary hypothesis to the Linear Representation Hypothesis regarding how the features of a deep network are represented.
+
+Our hypothesis is that the *centroids of a deep network form linear directions* to represent features. 
+The **centroid** of an input point $\mathbf{x}$ is equal to the sum of the rows of its corresponding input–output Jacobian.
+Importantly, this can be computed across sub-components of the deep network to extract features hierarchically.
+All techniques of interpretability derived under the linear representation hypothesis can be equivalently applied to perform interpretability under the centroid affinity hypothesis, as we show below.
+
+Below we train fully connected ReLU deep newtorks to classify the interior of polygons of different shapes.
+In the "Network Output" plot you can see the prediction of the deep network on various samples of the input space, along with how the ReLU deep network partitions its input space.
+After training, we take a collection of input samples, compute their centroids and then train a sparse autoencoder to identify features.
+We have numbered these features at the bottom of the page. Selecting one of these features will then show the input samples that maximally activate this features ("Input Samples" plot), and the corresponding centroids of those input samples ("Centroids").
+
+To observe the centroids for deep networks trained on different polygons, use the dropdown menu at the top of the page.
+"""
+)
 
 # --- 2. CSS for layout ---
-st.markdown("""
-    <style>
-        .main > div { max-width: 1600px; margin: 0 auto; }
-        h1, h2, h3, p { text-align: center; }
-        .stCheckbox { padding-top: 5px; }
-        /* CHANGED padding-top from 2rem to 5rem */
-        .block-container { padding-top: 5rem; padding-bottom: 5rem; }
-    </style>
-""", unsafe_allow_html=True)
+# st.markdown("""
+#     <style>
+#         .main > div { max-width: 1600px; margin: 0 auto; }
+#         h1, h2, h3, p { text-align: center; }
+#         .stCheckbox { padding-top: 5px; }
+#         /* CHANGED padding-top from 2rem to 5rem */
+#         .block-container { padding-top: 5rem; padding-bottom: 5rem; }
+#     </style>
+# """, unsafe_allow_html=True)
 
 # --- HELPER: Find available datasets ---
 def get_dataset_names():
