@@ -77,6 +77,20 @@ def plot_partition_optimized(verts, colors, ax, xlims, ylims, edgecolor='w', lin
 
 def main():
     st.title("VQ Distance Comparison to Euclidean Distance")
+    st.markdown(
+        """
+        In the paper [VQ Kernels](https://openreview.net/forum?id=KDtIOa3TVH#discussion), we introduce the VQ Distance as a pseudodistance on the input space of the deep network that appropriately accounts for the learned representations of a deep network.
+        It is constructed by analysing the activation patterns of deep networks.
+        Theoretically, the VQ Distance shows how a deep network makes "shortcuts" in the input space to make appropraite representations of the data that lies within the input space.
+        Empirically, the VQ Distance effectively captures the structure of the data on which the deep network was trained.
+        We validate this below by comparing the VQ Distance to the Euclidean distance.
+
+        Below we train a ReLU deep network on the moons dataset.
+        We visualise how this deep network partitions its input space.
+        In the "VQ Distance" plot, we colour the regions according to the VQ Distance between points within the region and the black scatter plot.
+        In the "Euclidean Distance" plot, we colour the regions according to the Euclidean distance between points within the region and the black scatter plot.
+        """
+    )
 
     data = load_data()
 
